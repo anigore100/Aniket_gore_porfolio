@@ -10,23 +10,23 @@ const SKILLS = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="section-bg-secondary py-16 sm:py-20">
+    <section id="skills" className="section-bg-secondary py-8 sm:py-10">
       <div className="section-padding">
         <div className="section-container">
-          <h2 className="section-title">Skills</h2>
-          <p className="mt-2 text-body">
+          <h2 className="text-xl font-bold tracking-tight text-foreground">Skills</h2>
+          <p className="mt-1 text-sm text-body">
             Technologies and tools I work with
           </p>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
             {Object.entries(SKILLS).map(([category, items]) => (
-              <div key={category} className="card-base">
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              <div key={category} className="rounded-lg border border-border bg-card p-4">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   {category}
                 </h3>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-1.5">
                   {items.map((skill) => (
-                    <span key={skill} className="skill-badge">
+                    <span key={skill} className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground">
                       {skill}
                     </span>
                   ))}

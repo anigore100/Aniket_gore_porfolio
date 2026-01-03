@@ -18,36 +18,36 @@ const EDUCATION = [
 
 const Education = () => {
   return (
-    <section id="education" className="section-bg-primary py-16 sm:py-20">
+    <section id="education" className="section-bg-primary py-8 sm:py-10">
       <div className="section-padding">
         <div className="section-container">
-          <h2 className="section-title">Education</h2>
-          <p className="mt-2 text-body">
+          <h2 className="text-xl font-bold tracking-tight text-foreground">Education</h2>
+          <p className="mt-1 text-sm text-body">
             Academic background and qualifications
           </p>
 
-          <div className="mt-10 space-y-6">
+          <div className="mt-5 space-y-3">
             {EDUCATION.map((edu) => (
-              <div key={edu.institution} className="card-base card-hover">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-accent/10">
-                    <GraduationCap className="h-6 w-6 text-accent" />
+              <div key={edu.institution} className="rounded-lg border border-border bg-card p-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent/10">
+                    <GraduationCap className="h-4 w-4 text-accent" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="font-semibold text-foreground">
+                        <h3 className="text-sm font-semibold text-foreground">
                           {edu.institution}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                           {edu.degree}
                         </p>
-                        <p className="text-sm text-body">{edu.location}</p>
+                        <p className="text-xs text-body">{edu.location}</p>
                       </div>
-                      <div className="text-sm text-muted-foreground sm:text-right">
+                      <div className="text-xs text-muted-foreground sm:text-right">
                         <p>{edu.period}</p>
                         {edu.cgpa && (
-                          <p className="mt-1 font-medium text-foreground">
+                          <p className="font-medium text-foreground">
                             CGPA: {edu.cgpa}
                           </p>
                         )}
