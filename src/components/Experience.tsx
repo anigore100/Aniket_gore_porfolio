@@ -37,51 +37,51 @@ const EXPERIENCES = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-bg-primary py-16 sm:py-20">
+    <section id="experience" className="section-bg-primary py-8 sm:py-10">
       <div className="section-padding">
         <div className="section-container">
-          <h2 className="section-title">Work Experience</h2>
-          <p className="mt-2 text-body">
+          <h2 className="text-xl font-bold tracking-tight text-foreground">Work Experience</h2>
+          <p className="mt-1 text-sm text-body">
             Professional journey and contributions
           </p>
 
-          <div className="mt-10 space-y-8">
+          <div className="mt-5 space-y-4">
             {EXPERIENCES.map((exp, index) => (
               <div
                 key={exp.company}
-                className="card-base card-hover relative pl-6"
+                className="rounded-lg border border-border bg-card p-4 relative pl-5"
               >
                 {/* Timeline indicator */}
-                <div className="absolute left-0 top-6 h-3 w-3 -translate-x-1/2 rounded-full bg-accent" />
+                <div className="absolute left-0 top-5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent" />
                 {index < EXPERIENCES.length - 1 && (
-                  <div className="absolute left-0 top-9 h-[calc(100%+2rem)] w-0.5 -translate-x-1/2 bg-border" />
+                  <div className="absolute left-0 top-8 h-[calc(100%+1rem)] w-0.5 -translate-x-1/2 bg-border" />
                 )}
 
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-semibold text-foreground">
+                      <h3 className="text-base font-semibold text-foreground">
                         {exp.company}
                       </h3>
                       {exp.isInternship && (
-                        <span className="rounded-md bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
+                        <span className="rounded-md bg-accent/10 px-1.5 py-0.5 text-[10px] font-medium text-accent">
                           Internship
                         </span>
                       )}
                     </div>
-                    <p className="text-sm font-medium text-muted-foreground">
+                    <p className="text-xs font-medium text-muted-foreground">
                       {exp.role}
                     </p>
                   </div>
-                  <p className="text-sm text-muted-foreground whitespace-nowrap">
+                  <p className="text-xs text-muted-foreground whitespace-nowrap">
                     {exp.period}
                   </p>
                 </div>
 
-                <ul className="mt-4 space-y-3">
+                <ul className="mt-2 space-y-1.5">
                   {exp.bullets.map((bullet, i) => (
-                    <li key={i} className="flex gap-3 text-sm text-body">
-                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/60" />
+                    <li key={i} className="flex gap-2 text-xs text-body">
+                      <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-accent/60" />
                       <span>{bullet}</span>
                     </li>
                   ))}
