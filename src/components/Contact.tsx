@@ -1,56 +1,62 @@
-import { Mail, Phone, Github } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Send } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-bg-secondary py-8 sm:py-10">
+    <section id="contact" className="section-bg-secondary py-5 sm:py-6">
       <div className="section-padding">
         <div className="section-container">
-          <div className="text-center">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">Get In Touch</h2>
-            <p className="mt-1 text-sm text-body">
-              Open to opportunities and collaborations
-            </p>
+          <div className="overflow-hidden rounded-3xl border border-border bg-[linear-gradient(135deg,#EAF8FA_0%,#CDE8EC_48%,#B8E3E9_100%)] text-foreground">
+            <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1.2fr_1fr] lg:p-10">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Contact</p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight">Let&apos;s Build Something Great</h2>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-body sm:text-base">
+                  Open to backend and full-stack opportunities, product collaborations, and AI-focused engineering work.
+                </p>
 
-            <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
-              <a
-                href="mailto:goreaniket100@gmail.com"
-                className="flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
-                  <Mail className="h-4 w-4 text-accent" />
+                <a href="mailto:goreaniket100@gmail.com" className="mt-6 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/85">
+                  <Send className="mr-2 h-4 w-4" />
+                  Start a Conversation
+                </a>
+              </div>
+
+              <div className="rounded-2xl border border-border bg-background/35 p-4">
+                <div className="space-y-3 text-sm">
+                  <a href="mailto:goreaniket100@gmail.com" className="flex items-center gap-3 rounded-xl border border-border bg-background/35 px-3 py-2 hover:border-accent/70">
+                    <Mail className="h-4 w-4 text-primary" />
+                    goreaniket100@gmail.com
+                  </a>
+
+                  <a href="tel:+919588428818" className="flex items-center gap-3 rounded-xl border border-border bg-background/35 px-3 py-2 hover:border-accent/70">
+                    <Phone className="h-4 w-4 text-primary" />
+                    +91-9588428818
+                  </a>
+
+                  <a
+                    href="https://github.com/aniketgore100"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-border bg-background/35 px-3 py-2 hover:border-accent/70"
+                  >
+                    <Github className="h-4 w-4 text-primary" />
+                    GitHub
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/aniket-gore-3681b4203/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-border bg-background/35 px-3 py-2 hover:border-accent/70"
+                  >
+                    <Linkedin className="h-4 w-4 text-primary" />
+                    LinkedIn
+                  </a>
                 </div>
-                <span>goreaniket100@gmail.com</span>
-              </a>
-
-              <a
-                href="tel:+919588428818"
-                className="flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
-                  <Phone className="h-4 w-4 text-accent" />
-                </div>
-                <span>+91-9588428818</span>
-              </a>
-
-              <a
-                href="https://github.com/aniketgore100"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-body transition-colors hover:text-accent"
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
-                  <Github className="h-4 w-4 text-accent" />
-                </div>
-                <span>github.com/aniketgore100</span>
-              </a>
-            </div>
-
-            <div className="mt-6 border-t border-border pt-4">
-              <p className="text-xs text-muted-foreground">
-                © {new Date().getFullYear()} Aniket Gore. All rights reserved.
-              </p>
+              </div>
             </div>
           </div>
+
+          <p className="mt-4 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} Aniket Gore. All rights reserved.</p>
         </div>
       </div>
     </section>

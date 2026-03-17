@@ -1,38 +1,55 @@
+import { Code2, Database, Monitor, Server, Wrench } from "lucide-react";
+
 const SKILLS = {
-  "Programming Languages": ["JavaScript", "C++", "Java", "Python"],
-  Frontend: ["React.js", "Next.js", "Redux Toolkit", "HTML5", "CSS3", "Tailwind CSS"],
-  Backend: ["Node.js", "Express.js"],
-  Databases: ["MongoDB", "MySQL"],
-  Testing: ["Postman"],
-  Tools: ["Jira", "Asana", "Docker", "Git", "GitHub"],
-  Interests: ["DSA", "CI/CD", "DevOps", "Agentic AI"],
+  Backend: ["Python", "Node.js", "REST APIs", "Flask", "Express.js", "RBAC", "Authentication"],
+  Frontend: ["React.js", "Next.js", "Redux Toolkit", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"],
+  "AI / Automation": ["LLMs", "RAG", "API Integration", "AI Workflows", "Prompt Workflows", "Agentic Automation"],
+  "Cloud & DevOps": ["Docker", "AWS"],
+  Data: ["MongoDB", "MySQL", "BigQuery"],
+  Tools: ["Git", "GitHub", "Postman", "Jira"],
+};
+
+const ICONS = {
+  Backend: Server,
+  Frontend: Monitor,
+  "AI / Automation": Code2,
+  "Cloud & DevOps": Wrench,
+  Data: Database,
+  Tools: Wrench,
 };
 
 const Skills = () => {
   return (
-    <section id="skills" className="section-bg-secondary py-8 sm:py-10">
+    <section id="skills" className="section-bg-secondary py-4 sm:py-5">
       <div className="section-padding">
         <div className="section-container">
-          <h2 className="text-xl font-bold tracking-tight text-foreground">Skills</h2>
-          <p className="mt-1 text-sm text-body">
-            Technologies and tools I work with
-          </p>
+          <div className="section-card">
+            <h2 className="section-title">Skills Stack</h2>
+            <p className="mt-1 text-sm text-body">Tech I use to design, build, and ship end-to-end products.</p>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {Object.entries(SKILLS).map(([category, items]) => (
-              <div key={category} className="rounded-lg border border-border bg-card p-4">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  {category}
-                </h3>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {items.map((skill) => (
-                    <span key={skill} className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium text-secondary-foreground">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {Object.entries(SKILLS).map(([category, items]) => {
+                const Icon = ICONS[category as keyof typeof ICONS];
+
+                return (
+                  <article key={category} className="uniform-panel rounded-2xl p-4">
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent/10">
+                        <Icon className="h-4 w-4 text-accent" />
+                      </span>
+                      <h3 className="text-sm font-semibold text-foreground">{category}</h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {items.map((skill) => (
+                        <span key={skill} className="chip">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
