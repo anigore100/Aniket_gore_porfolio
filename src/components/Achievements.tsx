@@ -3,6 +3,7 @@ import { Award, Code, Medal, Trophy } from "lucide-react";
 const ACHIEVEMENTS = [
   {
     icon: Trophy,
+    
     title: "TCS CodeVita Season 10",
     description: "AIR 715 in Round 1 and AIR 1225 in Round 2.",
   },
