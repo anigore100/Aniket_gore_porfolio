@@ -1,52 +1,46 @@
-import { GraduationCap, Landmark } from "lucide-react";
+import { motion } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 
 const EDUCATION = [
   {
-    institution: "Centre for Development of Advanced Computing (C-DAC)",
-    degree: "Diploma in Advanced Computing (PG-DAC)",
-    location: "Mumbai",
-    period: "2023 - 2024",
+    institute: "C-DAC, Mumbai",
+    detail: "Diploma in Advanced Computing (PG-Diploma)",
+    meta: "2023 - 2024",
   },
   {
-    institution: "Dr. Babasaheb Ambedkar Technological University",
-    degree: "B.Tech in Computer Science and Engineering",
-    location: "CSMSS Chh. Shahu College of Engineering, Sambhajinagar",
-    period: "2019 - 2023",
-    cgpa: "7.9",
+    institute: "Computer Science and Engineering",
+    detail: "B.Tech",
+    meta: "2019 - 2023 • CGPA 7.9",
   },
 ];
 
 const Education = () => {
   return (
-    <section id="education" className="section-bg-primary py-4 sm:py-5">
+    <section id="education" className="py-12 sm:py-14">
       <div className="section-padding">
-        <div className="section-container">
-          <div className="section-card">
-            <h2 className="section-title">Education</h2>
-            <p className="mt-1 text-sm text-body">Academic foundation and formal training behind my engineering work.</p>
+        <div className="mx-auto w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.3, once: true }}
+            className="glass-panel p-6 sm:p-8"
+          >
+            <p className="eyebrow">Education</p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Strong fundamentals in systems and software engineering</h2>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
-              {EDUCATION.map((edu) => (
-                <article key={edu.institution} className="uniform-panel rounded-2xl p-4">
-                  <div className="mb-3 flex items-center gap-2 text-muted-foreground">
-                    <Landmark className="h-4 w-4" />
-                    <span className="text-xs font-semibold uppercase tracking-wide">{edu.period}</span>
+            <div className="mt-8 grid gap-3 md:grid-cols-2">
+              {EDUCATION.map((item) => (
+                <article key={item.institute} className="rounded-2xl p-2">
+                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent/20 text-accent">
+                    <GraduationCap className="h-4 w-4" />
                   </div>
-
-                  <h3 className="text-base font-semibold text-foreground">{edu.institution}</h3>
-                  <p className="mt-1 text-sm font-medium text-body">{edu.degree}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{edu.location}</p>
-
-                  {edu.cgpa && (
-                    <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-background/35 px-3 py-1 text-xs font-semibold text-foreground">
-                      <GraduationCap className="h-3.5 w-3.5" />
-                      CGPA {edu.cgpa}
-                    </div>
-                  )}
+                  <p className="mt-3 text-base font-semibold text-foreground">{item.institute}</p>
+                  <p className="mt-1 text-sm text-body">{item.detail}</p>
+                  <p className="mt-2 text-xs font-medium uppercase tracking-[0.13em] text-muted-foreground">{item.meta}</p>
                 </article>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

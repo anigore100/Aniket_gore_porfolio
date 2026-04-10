@@ -1,55 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 205 20% 92%;
-    --background-alt: 205 14% 85%;
-    --foreground: 191 65% 14%;
+    --background: 236 42% 5%;
+    --foreground: 220 40% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 191 65% 14%;
+    --card: 236 28% 9%;
+    --card-foreground: 220 40% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 191 65% 14%;
+    --popover: 236 28% 9%;
+    --popover-foreground: 220 40% 96%;
 
-    --primary: 191 65% 14%;
-    --primary-foreground: 191 46% 97%;
+    --primary: 266 85% 68%;
+    --primary-foreground: 230 40% 8%;
 
-    --secondary: 193 24% 73%;
-    --secondary-foreground: 191 65% 14%;
+    --secondary: 231 30% 14%;
+    --secondary-foreground: 220 40% 96%;
 
-    --muted: 190 26% 88%;
-    --muted-foreground: 192 20% 36%;
+    --muted: 231 24% 14%;
+    --muted-foreground: 220 18% 74%;
 
-    --accent: 191 25% 40%;
-    --accent-foreground: 191 46% 97%;
+    --accent: 196 100% 62%;
+    --accent-foreground: 230 40% 8%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 220 40% 96%;
 
-    --border: 192 25% 72%;
-    --input: 192 25% 72%;
-    --ring: 191 25% 40%;
+    --border: 232 22% 22%;
+    --input: 232 22% 22%;
+    --ring: 266 85% 68%;
 
-    --radius: 0.95rem;
+    --radius: 1rem;
 
-    --section-primary: 205 20% 92%;
-    --section-secondary: 205 14% 85%;
-
-    --text-primary: 191 65% 14%;
-    --text-secondary: 192 20% 34%;
-    --text-tertiary: 192 16% 46%;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 236 30% 8%;
+    --sidebar-foreground: 220 40% 96%;
+    --sidebar-primary: 266 85% 68%;
+    --sidebar-primary-foreground: 230 40% 8%;
+    --sidebar-accent: 232 18% 14%;
+    --sidebar-accent-foreground: 220 40% 96%;
+    --sidebar-border: 232 22% 22%;
+    --sidebar-ring: 266 85% 68%;
   }
 
   * {
@@ -63,18 +57,155 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    background-image: linear-gradient(180deg, #e9edf1 0%, #d7dee5 100%);
-    background-attachment: fixed;
+    background-color: #05050a;
   }
 }
 
-.gemini-border {
-  background: linear-gradient(120deg, #b8e3e9, #93b1b5, #4f7c82, #b8e3e9);
-  background-size: 300% 300%;
-  animation: geminiGlow 3s ease infinite;
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent;
+  }
+
+  .text-body {
+    @apply text-[hsl(var(--muted-foreground))];
+  }
+
+  .nav-link {
+    @apply rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_12px_50px_-20px_rgba(153,97,255,0.95)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full bg-secondary/55 px-5 py-2.5 text-sm font-medium text-foreground transition duration-300 hover:bg-secondary;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition hover:-translate-y-0.5 hover:text-foreground;
+  }
+
+  .chip {
+    @apply rounded-full border border-border bg-card/80 px-3 py-1.5 text-xs font-medium text-muted-foreground;
+  }
+
+  .proof-badge {
+    @apply rounded-2xl border border-border bg-card/70 p-3 shadow-[0_12px_50px_-35px_rgba(133,118,255,0.7)];
+  }
+
+  .glass-panel {
+    @apply rounded-3xl bg-transparent shadow-none;
+  }
+
+  .value-row {
+    @apply flex gap-4 p-1;
+  }
+
+  .value-icon {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary;
+  }
+
+  .timeline-item {
+    @apply relative pl-12 sm:pl-14;
+  }
+
+  .timeline-dot {
+    @apply absolute left-0 top-1.5 inline-flex h-8 w-8 items-center justify-center rounded-xl text-primary sm:h-10 sm:w-10;
+  }
+
+  .timeline-content {
+    @apply p-1 sm:p-2;
+  }
+
+  .impact-bullet {
+    @apply px-0 py-0 text-sm text-body;
+  }
+
+  .skill-row {
+    @apply flex gap-4 p-1;
+  }
+
+  .contact-pill {
+    @apply inline-flex items-center gap-2 rounded-full bg-secondary/55 px-4 py-2 text-sm font-medium text-foreground transition hover:bg-secondary;
+  }
+
+  .hero-portrait-wrap {
+    @apply mx-auto w-full max-w-[300px];
+  }
+
+  .hero-portrait-card {
+    @apply bg-transparent p-0;
+  }
+
+  .hero-portrait-frame {
+    @apply relative mx-auto aspect-square w-[170px] overflow-hidden rounded-full border-2 border-border shadow-[0_18px_55px_-30px_rgba(128,98,255,0.75)] sm:w-[190px];
+  }
+
+  .hero-portrait-image {
+    @apply h-full w-full object-cover object-center;
+  }
+
+  .hero-portrait-overlay {
+    @apply pointer-events-none absolute inset-0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 25%, rgba(5, 6, 20, 0.45) 100%);
+  }
+
+  .hero-portrait-meta {
+    @apply mx-auto mt-3 w-full max-w-[300px] rounded-2xl border border-border bg-secondary/40 p-3 text-left;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #a56bff 0%, #7b8bff 40%, #59d1ff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 3.2s ease infinite;
+  }
+
+  .typing-cursor {
+    @apply ml-1 inline-block h-6 w-[2px] bg-primary align-middle;
+    animation: blinkCursor 1s steps(1) infinite;
+  }
+
+  .hero-glow {
+    @apply absolute h-[430px] w-[430px] rounded-full blur-3xl;
+  }
+
+  .hero-glow-left {
+    left: -150px;
+    top: 300px;
+    background: radial-gradient(circle, rgba(255, 64, 64, 0.26) 0%, rgba(255, 64, 64, 0) 72%);
+  }
+
+  .hero-glow-center {
+    left: 42%;
+    top: 130px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(132, 84, 255, 0.27) 0%, rgba(132, 84, 255, 0) 74%);
+  }
+
+  .hero-glow-right {
+    right: -140px;
+    top: 370px;
+    background: radial-gradient(circle, rgba(41, 176, 255, 0.24) 0%, rgba(41, 176, 255, 0) 72%);
+  }
+
+  .grid-overlay {
+    @apply absolute inset-0;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 86px 86px;
+    mask-image: radial-gradient(circle at center, black 25%, transparent 88%);
+  }
 }
 
-@keyframes geminiGlow {
+@keyframes gradientShift {
   0% {
     background-position: 0% 50%;
   }
@@ -88,114 +219,16 @@
   }
 }
 
-@layer components {
-  .section-padding {
-    @apply px-3 sm:px-4 lg:px-6;
+@keyframes blinkCursor {
+  0% {
+    opacity: 1;
   }
 
-  .section-container {
-    @apply w-full;
+  50% {
+    opacity: 0;
   }
 
-  .section-bg-primary {
-    @apply bg-transparent;
-  }
-
-  .section-bg-secondary {
-    @apply bg-transparent;
-  }
-
-  .text-heading {
-    @apply text-[hsl(var(--text-primary))] font-semibold tracking-tight;
-  }
-
-  .text-body {
-    @apply text-[hsl(var(--text-secondary))];
-  }
-
-  .text-muted-custom {
-    @apply text-[hsl(var(--text-tertiary))];
-  }
-
-  .surface-card {
-    @apply rounded-2xl border border-border shadow-sm backdrop-blur;
-    background: linear-gradient(135deg, #ffffff 0%, #edf8fa 48%, #d6edf1 100%);
-  }
-
-  .section-card {
-    @apply surface-card p-5 sm:p-6;
-  }
-
-  .uniform-panel {
-    @apply border border-border;
-    background: linear-gradient(135deg, #ffffff 0%, #eef8fa 100%);
-  }
-
-  .nav-link {
-    @apply rounded-full px-3 py-2 text-sm text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground;
-  }
-
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-border bg-card/85 px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-secondary/25;
-  }
-
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-border bg-card/85 px-3 py-1.5 text-xs font-medium text-muted-foreground;
-  }
-
-  .section-title {
-    @apply text-2xl font-bold tracking-tight text-foreground sm:text-3xl;
-  }
-
-  .vscode-shell {
-    background: linear-gradient(180deg, #e9edf1 0%, #d7dee5 100%);
-  }
-
-  .vscode-titlebar {
-    @apply sticky top-0 z-30 border-b border-border bg-background/90 px-4 py-2 backdrop-blur;
-  }
-
-  .vscode-main {
-    @apply grid min-h-[calc(100vh-40px)] grid-cols-1 md:grid-cols-[260px_1fr];
-  }
-
-  .vscode-sidebar {
-    @apply border-r border-border bg-background/55 p-4;
-  }
-
-  .vscode-file {
-    @apply flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-xs text-muted-foreground transition-colors hover:bg-secondary/40 hover:text-foreground;
-  }
-
-  .vscode-file-active {
-    @apply bg-secondary/60 text-foreground;
-  }
-
-  .vscode-editor {
-    @apply min-w-0;
-  }
-
-  .vscode-tabs {
-    @apply flex flex-wrap gap-1 border-b border-border bg-background/65 px-2 py-1;
-  }
-
-  .vscode-tab {
-    @apply inline-flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-secondary/40 hover:text-foreground;
-  }
-
-  .vscode-tab-active {
-    @apply border-border bg-secondary/60 text-foreground;
-  }
-
-  .vscode-breadcrumb {
-    @apply flex items-center gap-2 border-b border-border bg-background/40 px-4 py-2 text-xs text-foreground;
-  }
-
-  .vscode-content {
-    @apply p-2 sm:p-3;
+  100% {
+    opacity: 1;
   }
 }

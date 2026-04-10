@@ -1,55 +1,68 @@
-import { Code2, Database, Monitor, Server, Wrench } from "lucide-react";
+import { motion } from "framer-motion";
+import { Bot, Cloud, Database, LayoutDashboard, ServerCog } from "lucide-react";
 
-const SKILLS = {
-  Backend: ["Python", "Node.js", "REST APIs", "Flask", "Express.js", "RBAC", "Authentication"],
-  Frontend: ["React.js", "Next.js", "Redux Toolkit", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"],
-  "AI / Automation": ["LLMs", "RAG", "API Integration", "AI Workflows", "Prompt Workflows", "Agentic Automation"],
-  "Cloud & DevOps": ["Docker", "AWS"],
-  Data: ["MongoDB", "MySQL", "BigQuery"],
-  Tools: ["Git", "GitHub", "Postman", "Jira"],
-};
-
-const ICONS = {
-  Backend: Server,
-  Frontend: Monitor,
-  "AI / Automation": Code2,
-  "Cloud & DevOps": Wrench,
-  Data: Database,
-  Tools: Wrench,
-};
+const SKILL_GROUPS = [
+  {
+    icon: LayoutDashboard,
+    title: "Languages",
+    depth: "JavaScript, Java, Python, C++",
+  },
+  {
+    icon: ServerCog,
+    title: "Backend",
+    depth: "Node.js, Express.js, REST APIs, Spring Boot",
+  },
+  {
+    icon: Database,
+    title: "Database",
+    depth: "MongoDB (NoSQL), SQL, Redis",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud and Tools",
+    depth: "AWS, Postman, Swagger, Git, Cursor",
+  },
+  {
+    icon: Bot,
+    title: "Other",
+    depth: "System Design, Data Structures and Algorithms, AI Integration, Agentic AI",
+  },
+];
 
 const Skills = () => {
   return (
-    <section id="skills" className="section-bg-secondary py-4 sm:py-5">
+    <section id="skills" className="py-12 sm:py-14">
       <div className="section-padding">
-        <div className="section-container">
-          <div className="section-card">
-            <h2 className="section-title">Skills Stack</h2>
-            <p className="mt-1 text-sm text-body">Tech I use to design, build, and ship end-to-end products.</p>
+        <div className="mx-auto w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.3, once: true }}
+            className="mb-10"
+          >
+            <p className="eyebrow">Skills</p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Core engineering depth</h2>
+          </motion.div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {Object.entries(SKILLS).map(([category, items]) => {
-                const Icon = ICONS[category as keyof typeof ICONS];
-
-                return (
-                  <article key={category} className="uniform-panel rounded-2xl p-4">
-                    <div className="mb-3 flex items-center gap-2">
-                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent/10">
-                        <Icon className="h-4 w-4 text-accent" />
-                      </span>
-                      <h3 className="text-sm font-semibold text-foreground">{category}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {items.map((skill) => (
-                        <span key={skill} className="chip">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {SKILL_GROUPS.map((group, index) => (
+              <motion.article
+                key={group.title}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ amount: 0.25, once: true }}
+                transition={{ duration: 0.5, delay: index * 0.06 }}
+                className="skill-row"
+              >
+                <span className="value-icon">
+                  <group.icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">{group.title}</h3>
+                  <p className="mt-1 text-sm text-body sm:text-base">{group.depth}</p>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </div>

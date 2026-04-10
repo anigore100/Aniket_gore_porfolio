@@ -1,102 +1,103 @@
-import { Briefcase, Building2, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { BriefcaseBusiness, Building2, Sparkles } from "lucide-react";
 
-const EXPERIENCES = [
+const EXPERIENCE = [
   {
     company: "Transerg LLP",
     role: "Software Engineer I",
     period: "Dec 2024 - Present",
-    bullets: [
-      "Built and deployed Next.js full-stack platforms integrating scalable UI and API layers for document, user, and campaign management.",
-      "Designed and implemented a secure, reusable RBAC system for user permissions, document visibility, and workflow automation.",
-      "Developed AI-driven outreach automation using Gmail and LinkedIn APIs with LLM-powered behavior analysis.",
-      "Improved performance with pagination, caching, and MongoDB indexing for better stability under concurrent loads.",
+    location: "Remote",
+    highlights: [
+      "Built and scaled a web-based food image gallery to 400K+ images serving 10K daily users.",
+      "Reduced manual content creation effort and cost by 90% by integrating AI APIs for personalized generation.",
+      "Implemented background jobs and Node.js worker threads for high-load parallel processing.",
+      "Integrated CloudFront CDN, SES, and S3 with signed URLs for secure storage and faster delivery.",
+      "Engineered automation workflows that handled 80% of sales-team tasks with cron-driven research and outreach via Gmail and LinkedIn.",
+      "Optimized API response from 4 seconds to 300 milliseconds using parallel query execution, gzip, and caching.",
+      "Designed RBAC + JWT/OAuth + rate limiting for stronger admin security and DDoS/scraping protection.",
+      "Increased development and delivery speed by 30% through Agile collaboration and effective AI tooling.",
     ],
+    current: true,
   },
   {
     company: "Agivant Technologies",
     role: "Full Stack Software Engineer",
     period: "May 2024 - Nov 2024",
-    bullets: [
-      "Engineered full-stack cloud applications with AI-driven features including RAG-based Text-to-SQL assistant workflows.",
-      "Developed conversational data agents that translated natural language into SQL and returned summarized business insights.",
-      "Worked with Python, Google Cloud, Docker, Streamlit, and BigQuery across delivery lifecycles.",
+    location: "Pune",
+    highlights: [
+      "Engineered an MVP AI cloud application featuring a RAG-based text-to-SQL conversational agent.",
+      "Built a conversational system that translated natural language to SQL and generated summarized insights and visualizations.",
+      "Designed and deployed AI solutions with Python, LLMs, RAG, Vector DBs, and BigQuery outputs.",
+      "Contributed to a production e-commerce platform with React in rapid Agile sprints and Streamlit + Flask interfaces.",
     ],
   },
   {
     company: "MagicFlare Software Services",
     role: "Frontend Developer Intern",
     period: "Apr 2023 - Jun 2023",
-    isInternship: true,
-    bullets: [
-      "Built frontend features using React.js with REST APIs integrated from Spring Boot services.",
-      "Migrated a static website into a dynamic React application.",
+    location: "Sambhajinagar",
+    highlights: [
+      "Developed collaborative frontend features in React with Spring Boot backend integration.",
+      "Implemented REST API integrations with MySQL-backed services for seamless data flow.",
+      "Migrated a static website into a dynamic React application with improved maintainability.",
     ],
   },
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-bg-primary py-4 sm:py-5">
+    <section id="experience" className="py-12 sm:py-14">
       <div className="section-padding">
-        <div className="section-container">
-          <div className="section-card">
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-border bg-background/35 px-3 py-1 text-xs font-semibold text-muted-foreground">
-                  <Briefcase className="h-3.5 w-3.5" />
-                  Experience
-                </p>
-                <h2 className="section-title">Professional Journey</h2>
-                <p className="mt-1 text-sm text-body">Hands-on work across full-stack products and applied AI solutions.</p>
-              </div>
-            </div>
+        <div className="mx-auto w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.3, once: true }}
+            className="mb-10"
+          >
+            <p className="eyebrow">Experience</p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Execution timeline with measurable outcomes</h2>
+          </motion.div>
 
-            <div className="space-y-4">
-              {EXPERIENCES.map((exp) => {
-                const isCurrent = exp.period.includes("Present");
+          <div className="relative space-y-8 before:absolute before:bottom-0 before:left-4 before:top-1 before:w-px before:bg-gradient-to-b before:from-primary/70 before:to-primary/10 sm:before:left-5">
+            {EXPERIENCE.map((item, index) => (
+              <motion.article
+                key={item.company}
+                initial={{ opacity: 0, x: -18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ amount: 0.2, once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="timeline-item"
+              >
+                <div className="timeline-dot">
+                  {item.current ? <Sparkles className="h-4 w-4" /> : <Building2 className="h-4 w-4" />}
+                </div>
 
-                return (
-                  <article key={exp.company} className="uniform-panel rounded-2xl p-4 sm:p-5">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          {isCurrent ? (
-                            <span className="chip border-border bg-background/35 px-4 py-1.5 text-sm font-semibold text-foreground">
-                              {exp.company}
-                            </span>
-                          ) : (
-                            <h3 className="text-lg font-semibold text-foreground">{exp.company}</h3>
-                          )}
-                          {isCurrent && (
-                            <span className="chip border-primary/40 bg-primary/15 text-primary">
-                              <Sparkles className="h-3.5 w-3.5" />
-                              Current Role
-                            </span>
-                          )}
-                          {exp.isInternship && (
-                            <span className="chip">
-                              <Building2 className="h-3.5 w-3.5" />
-                              Internship
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-sm font-medium text-muted-foreground">{exp.role}</p>
-                      </div>
-
-                      <p className="text-sm font-medium text-muted-foreground">{exp.period}</p>
+                <div className="timeline-content">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <p className="text-lg font-semibold text-foreground">{item.company}</p>
+                      <p className="inline-flex items-center gap-1 text-sm text-body">
+                        <BriefcaseBusiness className="h-3.5 w-3.5" />
+                        {item.role}
+                      </p>
                     </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-muted-foreground">{item.period}</p>
+                      <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.location}</p>
+                    </div>
+                  </div>
 
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                      {exp.bullets.map((bullet) => (
-                        <li key={bullet} className="rounded-xl border border-border bg-background/35 px-3 py-2 text-sm text-body">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                );
-              })}
-            </div>
+                  <ul className="mt-4 space-y-2">
+                    {item.highlights.map((highlight) => (
+                      <li key={highlight} className="impact-bullet">
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
       </div>
