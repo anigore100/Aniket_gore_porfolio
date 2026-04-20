@@ -25,7 +25,7 @@ const SKILL_GROUPS = [
   {
     icon: Bot,
     title: "Other",
-    depth: "System Design, Data Structures and Algorithms, AI Integration, Agentic AI",
+    depth: "System Design, RAG, Data Structures and Algorithms, AI Integration, Agentic AI",
   },
 ];
 
