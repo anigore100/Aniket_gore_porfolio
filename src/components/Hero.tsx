@@ -9,7 +9,7 @@ type HeroProps = {
 };
 
 const ROTATING_ROLES = [
-  "Backend Engineer",
+  "Backend and RAG Engineer",
   "AI Automation Engineer",
   "Full Stack Software Engineer",
 ];
@@ -52,8 +52,7 @@ const Hero = ({ onViewWork, onContact }: HeroProps) => {
             </div>
 
             <p className="mt-5 max-w-4xl text-base leading-relaxed text-body sm:text-lg">
-              Backend engineer with ~2 years of experience building and scaling robust architectures, AI-driven automation platforms,
-              and high-throughput APIs with Node.js, Express.js, MongoDB, and AWS.
+              Backend and RAG engineer with ~2 years of experience building robust architectures, AI-driven automation platforms, and high-throughput APIs with Node.js, Express.js, MongoDB, and AWS.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -62,7 +61,7 @@ const Hero = ({ onViewWork, onContact }: HeroProps) => {
                 <ExternalLink className="ml-1.5 h-4 w-4" />
               </button>
               <button type="button" onClick={onViewWork} className="btn-secondary">
-                View Experience
+                View Projects
                 <ArrowRight className="ml-1.5 h-4 w-4" />
               </button>
               <a href="https://github.com/aniketgore100" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="GitHub">

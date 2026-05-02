@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Award, BadgeCheck, Cloud } from "lucide-react";
 
 const HIGHLIGHTS = [
-  { icon: Award, title: "Stellar Award", value: "Q4 2025" },
+  { icon: Award, title: "Stellar Engineer Award", value: "Q4 2025" },
   { icon: BadgeCheck, title: "Python Certification", value: "Udemy" },
   { icon: Cloud, title: "Google Cloud Fundamentals", value: "Coursera" },
 ];
