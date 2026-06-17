@@ -14,6 +14,13 @@ const ROTATING_ROLES = [
   "Full Stack Software Engineer",
 ];
 
+const STATS = [
+  { value: "~2 yrs", label: "Experience" },
+  { value: "400K+", label: "Images scaled" },
+  { value: "4s → 300ms", label: "API optimized" },
+  { value: "80%", label: "Tasks automated" },
+];
+
 const Hero = ({ onViewWork, onContact }: HeroProps) => {
   const [roleIndex, setRoleIndex] = useState(0);
 
@@ -70,6 +77,15 @@ const Hero = ({ onViewWork, onContact }: HeroProps) => {
               <a href="https://www.linkedin.com/in/aniket-gore-3681b4203/" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {STATS.map((stat) => (
+                <div key={stat.label} className="rounded-xl border border-border/60 bg-card/50 px-4 py-2 text-center">
+                  <p className="text-sm font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
 

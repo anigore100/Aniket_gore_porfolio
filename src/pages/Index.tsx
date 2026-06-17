@@ -1,12 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
+import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Achievements from "@/components/Achievements";
 import Education from "@/components/Education";
-import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 
 const Index = () => {
@@ -20,7 +17,6 @@ const Index = () => {
         <div className="hero-glow hero-glow-left" />
         <div className="hero-glow hero-glow-center" />
         <div className="hero-glow hero-glow-right" />
-        
       </div>
 
       <Navbar />
@@ -28,10 +24,7 @@ const Index = () => {
       <Projects />
       <Experience />
       <Skills />
-      <Achievements />
       <Education />
-      <Certifications />
-      <About />
       <Contact />
     </div>
   );

@@ -6,8 +6,7 @@ const NAV_ITEMS = [
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#about", label: "About" },
+  { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -38,7 +37,7 @@ const Navbar = () => {
 
           <button
             className="rounded-xl border border-border/50 bg-card/70 p-2 text-foreground md:hidden"
-            onClick={() => setIsOpen((prev) => (prev ? false : true))}
+            onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}

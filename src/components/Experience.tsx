@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BriefcaseBusiness, Building2, Sparkles } from "lucide-react";
+import { Award, BriefcaseBusiness, Building2, Sparkles } from "lucide-react";
 
 const EXPERIENCE = [
   {
@@ -7,15 +7,13 @@ const EXPERIENCE = [
     role: "Software Engineer I",
     period: "Dec 2024 - Present",
     location: "Remote",
+    award: "Stellar Engineer Award — Q4 2025",
     highlights: [
       "Built and scaled a web-based food image gallery to 400K+ images serving 10K daily users.",
       "Reduced manual content creation effort and cost by 90% by integrating AI APIs for personalized generation.",
-      "Implemented background jobs and Node.js worker threads for high-load parallel processing.",
-      "Integrated CloudFront CDN, SES, and S3 with signed URLs for secure storage and faster delivery.",
       "Engineered automation workflows that handled 80% of sales-team tasks with cron-driven research and outreach via Gmail and LinkedIn.",
       "Optimized API response from 4 seconds to 300 milliseconds using parallel query execution, gzip, and caching.",
       "Designed RBAC + JWT/OAuth + rate limiting for stronger admin security and DDoS/scraping protection.",
-      "Increased development and delivery speed by 30% through Agile collaboration and effective AI tooling.",
     ],
     current: true,
   },
@@ -26,9 +24,8 @@ const EXPERIENCE = [
     location: "Pune",
     highlights: [
       "Engineered an MVP AI cloud application featuring a RAG-based text-to-SQL conversational agent.",
-      "Built a conversational system that translated natural language to SQL and generated summarized insights and visualizations.",
       "Designed and deployed AI solutions with Python, LLMs, RAG, Vector DBs, and BigQuery outputs.",
-      "Contributed to a production e-commerce platform with React in rapid Agile sprints and Streamlit + Flask interfaces.",
+      "Contributed to a production e-commerce platform with React in rapid Agile sprints.",
     ],
   },
   {
@@ -38,7 +35,6 @@ const EXPERIENCE = [
     location: "Sambhajinagar",
     highlights: [
       "Developed collaborative frontend features in React with Spring Boot backend integration.",
-      "Implemented REST API integrations with MySQL-backed services for seamless data flow.",
       "Migrated a static website into a dynamic React application with improved maintainability.",
     ],
   },
@@ -56,7 +52,7 @@ const Experience = () => {
             className="mb-10"
           >
             <p className="eyebrow">Experience</p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Execution timeline with measurable outcomes</h2>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Work History</h2>
           </motion.div>
 
           <div className="relative space-y-8 before:absolute before:bottom-0 before:left-4 before:top-1 before:w-px before:bg-gradient-to-b before:from-primary/70 before:to-primary/10 sm:before:left-5">
@@ -74,7 +70,7 @@ const Experience = () => {
                 </div>
 
                 <div className="timeline-content">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
                       <p className="text-lg font-semibold text-foreground">{item.company}</p>
                       <p className="inline-flex items-center gap-1 text-sm text-body">
@@ -88,9 +84,17 @@ const Experience = () => {
                     </div>
                   </div>
 
+                  {item.award && (
+                    <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent">
+                      <Award className="h-3 w-3" />
+                      {item.award}
+                    </p>
+                  )}
+
                   <ul className="mt-4 space-y-2">
                     {item.highlights.map((highlight) => (
-                      <li key={highlight} className="impact-bullet">
+                      <li key={highlight} className="flex gap-2.5 text-sm text-body">
+                        <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                         {highlight}
                       </li>
                     ))}

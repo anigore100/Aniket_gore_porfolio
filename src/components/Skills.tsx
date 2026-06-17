@@ -5,27 +5,27 @@ const SKILL_GROUPS = [
   {
     icon: LayoutDashboard,
     title: "Languages",
-    depth: "JavaScript, Java, Python, C++",
+    skills: ["JavaScript", "Java", "Python", "C++"],
   },
   {
     icon: ServerCog,
     title: "Backend",
-    depth: "Node.js, Express.js, REST APIs, Spring Boot",
+    skills: ["Node.js", "Express.js", "REST APIs", "Spring Boot"],
   },
   {
     icon: Database,
     title: "Database",
-    depth: "MongoDB (NoSQL), SQL, Redis",
+    skills: ["MongoDB", "SQL", "Redis"],
   },
   {
     icon: Cloud,
-    title: "Cloud and Tools",
-    depth: "AWS, Postman, Swagger, Git, Cursor",
+    title: "Cloud & Tools",
+    skills: ["AWS", "Postman", "Swagger", "Git", "Cursor"],
   },
   {
     icon: Bot,
-    title: "Other",
-    depth: "System Design, RAG, Data Structures and Algorithms, AI Integration, Agentic AI",
+    title: "AI & Systems",
+    skills: ["System Design", "RAG", "DSA", "AI Integration", "Agentic AI"],
   },
 ];
 
@@ -41,10 +41,10 @@ const Skills = () => {
             className="mb-10"
           >
             <p className="eyebrow">Skills</p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Core engineering depth</h2>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Tech Stack</h2>
           </motion.div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {SKILL_GROUPS.map((group, index) => (
               <motion.article
                 key={group.title}
@@ -52,14 +52,18 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.25, once: true }}
                 transition={{ duration: 0.5, delay: index * 0.06 }}
-                className="skill-row"
+                className="flex gap-4 rounded-2xl border border-border/50 bg-card/30 p-4"
               >
-                <span className="value-icon">
+                <span className="value-icon shrink-0">
                   <group.icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">{group.title}</h3>
-                  <p className="mt-1 text-sm text-body sm:text-base">{group.depth}</p>
+                  <h3 className="text-base font-semibold text-foreground">{group.title}</h3>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {group.skills.map((skill) => (
+                      <span key={skill} className="chip">{skill}</span>
+                    ))}
+                  </div>
                 </div>
               </motion.article>
             ))}

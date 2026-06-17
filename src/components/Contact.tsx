@@ -12,7 +12,7 @@ const Contact = () => {
           className="mx-auto w-full max-w-6xl p-2 text-center sm:p-4"
         >
           <p className="eyebrow">Contact</p>
-          <h2 className="mt-3 mx-auto max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">Let&apos;s build something impactful.</h2>
+          <h2 className="mt-3 mx-auto max-w-3xl text-3xl font-bold sm:text-4xl">Get in Touch</h2>
           <p className="mt-4 mx-auto max-w-2xl text-sm text-body sm:text-base">
             Open to backend engineering and full-stack opportunities where reliability, speed, and AI-assisted execution matter.
           </p>
