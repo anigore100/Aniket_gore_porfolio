@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
 import { BrainCircuit, FileText, Github, MessageSquare, ShieldCheck } from "lucide-react";
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  period: string;
+  summary: string;
+  outcomes: string[];
+  stack: string[];
+  features: { icon: React.ElementType; text: string }[];
+  problem: string;
+  solution: string;
+  /** Cloudinary player iframe src — highest priority */
+  proofEmbed?: string;
+  /** Direct video URL (Cloudinary /video/upload/… .mp4) */
+  proofVideo?: string;
+  /** Fallback static image */
+  proofImage?: string;
+  githubUrl: string;
+};
+
+const PROJECTS: Project[] = [
   {
     title: "Document Intelligence",
     period: "2025 – Present",
@@ -36,6 +54,7 @@ const PROJECTS = [
       "Finding specific information across large PDFs requires reading entire documents — slow and unscalable for multi-user organizations.",
     solution:
       "PDFs upload to S3, triggering an SQS message the FastAPI worker picks up for high-res chunking and embedding into ChromaDB. Queries retrieve section-aware chunks, feed them to the LLM, and return coordinate-mapped highlights for the React PDF viewer.",
+    proofEmbed: "https://player.cloudinary.com/embed/?cloud_name=deiiskqvp&public_id=Screen_Recording_2026-06-19_at_00.02.45_zgcqkb",
     proofImage: "/image.png",
     githubUrl: "https://github.com/aniketgore100/Document_Intelligence_MERN_AI_RAG",
   },
@@ -127,15 +146,36 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Proof image */}
-                <div className="mt-6 overflow-hidden rounded-2xl border border-border/70 bg-secondary/20">
-                  <img
-                    src={project.proofImage}
-                    alt={`${project.title} dashboard`}
-                    className="h-auto w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
+                {/* Proof media — embed > video > image */}
+                {(project.proofEmbed || project.proofVideo || project.proofImage) && (
+                  <div className="mt-6 overflow-hidden rounded-2xl border border-border/70 bg-secondary/20">
+                    {project.proofEmbed ? (
+                      <iframe
+                        src={project.proofEmbed}
+                        style={{ aspectRatio: "16/9" }}
+                        className="w-full"
+                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : project.proofVideo ? (
+                      <video
+                        src={project.proofVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="h-auto w-full object-cover"
+                      />
+                    ) : (
+                      <img
+                        src={project.proofImage}
+                        alt={`${project.title} dashboard`}
+                        className="h-auto w-full object-cover"
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                )}
               </motion.article>
             ))}
           </div>

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import CodingStats from "@/components/CodingStats";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 
@@ -21,6 +22,7 @@ const Index = () => {
 
       <Navbar />
       <Hero onViewWork={() => scrollToId("projects")} onContact={() => scrollToId("contact")} />
+      <CodingStats />
       <Projects />
       <Experience />
       <Skills />

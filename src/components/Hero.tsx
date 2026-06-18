@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Github, Linkedin, Sparkles } from "lucide-react";
 import profileImage from "@/assets/avatar.avif";
 
+// ── Update these with your actual usernames ──────────────────────────────────
+const LEETCODE_USERNAME = "goreaniket_1";
+// ─────────────────────────────────────────────────────────────────────────────
+
 type HeroProps = {
   onViewWork?: () => void;
   onContact?: () => void;
@@ -14,7 +18,7 @@ const ROTATING_ROLES = [
   "Full Stack Software Engineer",
 ];
 
-const STATS = [
+const STATIC_STATS = [
   { value: "~2 yrs", label: "Experience" },
   { value: "400K+", label: "Images scaled" },
   { value: "4s → 300ms", label: "API optimized" },
@@ -23,14 +27,29 @@ const STATS = [
 
 const Hero = ({ onViewWork, onContact }: HeroProps) => {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [leetcodeCount, setLeetcodeCount] = useState<string>("...");
+  const gfgCount = "392";
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % ROTATING_ROLES.length);
     }, 2300);
-
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`)
+      .then((r) => r.json())
+      .then((data) => setLeetcodeCount(data.solvedProblem ?? data.totalSolved ?? "—"))
+      .catch(() => setLeetcodeCount("—"));
+  }, []);
+
+
+  const allStats = [
+    ...STATIC_STATS,
+    { value: String(leetcodeCount), label: "LeetCode solved" },
+    { value: String(gfgCount), label: "GFG solved" },
+  ];
 
   return (
     <section id="home" className="relative flex min-h-[calc(100vh-64px)] items-center py-16 sm:py-20">
@@ -80,7 +99,7 @@ const Hero = ({ onViewWork, onContact }: HeroProps) => {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {STATS.map((stat) => (
+              {allStats.map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-border/60 bg-card/50 px-4 py-2 text-center">
                   <p className="text-sm font-bold text-foreground">{stat.value}</p>
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
