@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/60 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 backdrop-blur-md">
       <div className="section-padding">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between">
           <a href="#home" className="text-base font-bold tracking-tight text-foreground">
@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="rounded-xl border border-border/50 bg-card/70 p-2 text-foreground md:hidden"
+            className="rounded-xl border border-white/10 bg-transparent p-2 text-foreground md:hidden"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
@@ -48,7 +48,7 @@ const Navbar = () => {
           <motion.nav
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-4 space-y-1 rounded-2xl border border-border/60 bg-card/80 p-3 shadow-xl md:hidden"
+            className="mb-4 space-y-1 rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-md md:hidden"
           >
             {NAV_ITEMS.map((item) => (
               <a key={item.href} href={item.href} className="nav-link block" onClick={() => setIsOpen(false)}>

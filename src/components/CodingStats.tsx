@@ -47,7 +47,7 @@ const Donut = ({ data, total, sub }: DonutProps) => (
         startAngle={90}
         endAngle={-270}
         strokeWidth={2}
-        stroke="hsl(var(--card))"
+        stroke="transparent"
       >
         {data.map((entry, i) => (
           <Cell key={i} fill={entry.fill} />
@@ -82,7 +82,7 @@ const StatRow = ({
   label: string;
   value: string | number;
 }) => (
-  <div className="flex items-center justify-between gap-3 rounded-xl border border-border/40 bg-secondary/20 px-4 py-2.5">
+  <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] py-2.5 last:border-0">
     <span className="text-sm text-muted-foreground">{label}</span>
     <span className="text-sm font-bold text-foreground">{value}</span>
   </div>
@@ -118,8 +118,8 @@ const CodingStats = () => {
       <div className="section-padding">
         <div className="mx-auto w-full max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.3, once: true }}
             className="mb-10"
           >
@@ -134,7 +134,7 @@ const CodingStats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ amount: 0.25, once: true }}
               transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-border/60 bg-card/35 p-5 sm:p-6"
+              className="rounded-2xl border border-border/25 bg-card/10 p-5 sm:p-6"
             >
               <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-accent">LeetCode</p>
 
@@ -158,7 +158,7 @@ const CodingStats = () => {
               </div>
 
               {lc && (
-                <div className="mt-5 space-y-2">
+                <div className="mt-5">
                   <StatRow label="Easy" value={`${lc.easySolved} solved`} />
                   <StatRow label="Medium" value={`${lc.mediumSolved} solved`} />
                   <StatRow label="Hard" value={`${lc.hardSolved} solved`} />
@@ -172,7 +172,7 @@ const CodingStats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ amount: 0.25, once: true }}
               transition={{ duration: 0.5, delay: 0.07 }}
-              className="rounded-2xl border border-border/60 bg-card/35 p-5 sm:p-6"
+              className="rounded-2xl border border-border/25 bg-card/10 p-5 sm:p-6"
             >
               <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-accent">GeeksforGeeks</p>
 
@@ -183,7 +183,7 @@ const CodingStats = () => {
                 </div>
               </div>
 
-              <div className="mt-5 space-y-2">
+              <div className="mt-5">
                 <StatRow label="Coding Score"    value={GFG.codingScore} />
                 <StatRow label="Institute Rank"  value={GFG.instituteRank} />
                 <StatRow label="POTDs Solved"    value={GFG.potdsSolved} />

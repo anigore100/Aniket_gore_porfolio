@@ -1,112 +1,153 @@
 import { motion } from "framer-motion";
-import { Award, BriefcaseBusiness, Building2, Sparkles } from "lucide-react";
+import { Award, BriefcaseBusiness, Sparkles } from "lucide-react";
 
-const EXPERIENCE = [
+type SubProject = { name: string; highlights: string[] };
+
+type ExperienceItem = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  award?: string;
+  current?: boolean;
+  subProjects?: SubProject[];
+  highlights?: string[];
+};
+
+const EXPERIENCE: ExperienceItem[] = [
   {
-    company: "Transerg LLP",
+    company: "Transeg LLP",
     role: "Software Engineer I",
-    period: "Dec 2024 - Present",
+    period: "Dec 2024 – Jun 2026",
     location: "Remote",
     award: "Stellar Engineer Award — Q4 2025",
-    highlights: [
-      "Built and scaled a web-based food image gallery to 400K+ images serving 10K daily users.",
-      "Reduced manual content creation effort and cost by 90% by integrating AI APIs for personalized generation.",
-      "Engineered automation workflows that handled 80% of sales-team tasks with cron-driven research and outreach via Gmail and LinkedIn.",
-      "Optimized API response from 4 seconds to 300 milliseconds using parallel query execution, gzip, and caching.",
-      "Designed RBAC + JWT/OAuth + rate limiting for stronger admin security and DDoS/scraping protection.",
-    ],
     current: true,
+    subProjects: [
+      {
+        name: "Petpooja Studio — AI Image Gallery",
+        highlights: [
+          "Led end-to-end delivery of an AI-powered image gallery platform serving 400K+ assets to 10,000 daily active users, managing architecture, team coordination, and deployment.",
+          "Reduced API latency from 4,000ms → 100ms through database indexing, query optimization, parallel execution, and CloudFront CDN caching.",
+          "Integrated AI APIs (Background Removal, Nano Banana, Veo-3) to generate personalized image and video content via user-driven image fusion pipelines.",
+          "Architected AWS infrastructure: S3 with versioning, SQS for async image/video job processing, SES for transactional email, CloudFront for content delivery, EC2 for backend services.",
+          "Built image resizing pipeline for 12+ aggregator integrations including Zomato, Swiggy, and international platforms; integrated Studio APIs directly into Petpooja POS.",
+          "Collaborated across AI/data science, VAPT, QA, legal, and aggregator teams to deliver requirement-aligned, security-audited releases.",
+        ],
+      },
+      {
+        name: "FlowBit AI — Document Intelligence SaaS",
+        highlights: [
+          "Built backend APIs with Node.js and Next.js for an AI-powered procurement platform using Azure OpenAI (GPT-4) to generate natural-language procurement recommendations with document highlighting.",
+          "Engineered a multi-tenant RBAC authorization layer providing organization-, department-, and user-level resource access control across the platform.",
+          "Implemented end-to-end file storage system on AWS S3; integrated AWS SQS for async document processing queues.",
+          "Built collaborative features: nested comments, approval/rejection workflows, invite/onboarding flows, and assign/revoke permission management.",
+          "Owned technical requirement gathering and implemented GDPR compliance measures across the platform.",
+        ],
+      },
+      {
+        name: "SuperSalesMind — AI Sales Automation Platform",
+        highlights: [
+          "Founding engineer of an AI-driven lead intelligence and outreach automation platform integrating RocketReach, Crustdata, Lusha, and People Data Labs for contact enrichment.",
+          "Integrated Unipile APIs to connect Gmail and LinkedIn for automated multi-step outreach sequences with autonomous reply handling based on company data.",
+          "Built autopilot lead discovery engine with configurable filters, cron-scheduled campaigns, and calendar-based meeting booking — reducing manual outreach effort by 40%.",
+          "Delivered end-to-end: advanced analytics dashboard, CRM workflows, lead tracking from outreach to onboarding, and CI/CD pipeline on AWS.",
+        ],
+      },
+    ],
   },
   {
     company: "Agivant Technologies",
     role: "Full Stack Software Engineer",
-    period: "May 2024 - Nov 2024",
+    period: "May 2024 – Nov 2024",
     location: "Pune",
     highlights: [
-      "Engineered an MVP AI cloud application featuring a RAG-based text-to-SQL conversational agent.",
-      "Designed and deployed AI solutions with Python, LLMs, RAG, Vector DBs, and BigQuery outputs.",
-      "Contributed to a production e-commerce platform with React in rapid Agile sprints.",
-    ],
-  },
-  {
-    company: "MagicFlare Software Services",
-    role: "Frontend Developer Intern",
-    period: "Apr 2023 - Jun 2023",
-    location: "Sambhajinagar",
-    highlights: [
-      "Developed collaborative frontend features in React with Spring Boot backend integration.",
-      "Migrated a static website into a dynamic React application with improved maintainability.",
+      "Engineered a conversational AI platform on Google Cloud Platform — ingested and cleaned raw data into BigQuery, built a full RAG pipeline using Vertex AI, text-embedding-gecko embeddings, and Gemini LLM to power a Text-to-SQL query engine.",
+      "Designed the data pipeline: raw data ingestion → BigQuery → vector embedding with re-rankers → natural language to SQL conversion → interactive visualizations (Seaborn, Matplotlib) for non-technical business users.",
+      "Containerized services with Docker and managed source control via GitHub; integrated vector database for semantic retrieval with re-ranking for result quality.",
+      "Delivered client-driven features for a production e-commerce platform; participated in sprint planning, code reviews, and cross-functional Agile delivery.",
     ],
   },
 ];
 
-const Experience = () => {
-  return (
-    <section id="experience" className="py-12 sm:py-14">
-      <div className="section-padding">
-        <div className="mx-auto w-full max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.3, once: true }}
-            className="mb-10"
-          >
-            <p className="eyebrow">Experience</p>
-            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Work History</h2>
-          </motion.div>
+const Experience = () => (
+  <section id="experience" className="py-12 sm:py-14">
+    <div className="section-padding">
+      <div className="mx-auto w-full max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.3, once: true }}
+          className="mb-12"
+        >
+          <p className="eyebrow">Experience</p>
+          <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Work History</h2>
+        </motion.div>
 
-          <div className="relative space-y-8 before:absolute before:bottom-0 before:left-4 before:top-1 before:w-px before:bg-gradient-to-b before:from-primary/70 before:to-primary/10 sm:before:left-5">
-            {EXPERIENCE.map((item, index) => (
-              <motion.article
-                key={item.company}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ amount: 0.2, once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="timeline-item"
-              >
-                <div className="timeline-dot">
-                  {item.current ? <Sparkles className="h-4 w-4" /> : <Building2 className="h-4 w-4" />}
+        <div className="relative space-y-12 before:absolute before:bottom-0 before:left-[5px] before:top-2 before:w-px before:bg-gradient-to-b before:from-primary/60 before:to-primary/05">
+          {EXPERIENCE.map((item, index) => (
+            <motion.article
+              key={item.company}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ amount: 0.1, once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="pl-10"
+            >
+              <div className="absolute left-0 top-1.5">
+                {item.current
+                  ? <Sparkles className="h-3 w-3 text-primary" />
+                  : <span className="block h-2 w-2 rounded-full bg-primary/50 mt-0.5" />}
+              </div>
+
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div>
+                  <p className="text-xl font-bold text-foreground">{item.company}</p>
+                  <p className="mt-0.5 inline-flex items-center gap-1.5 text-sm text-body">
+                    <BriefcaseBusiness className="h-3.5 w-3.5" />
+                    {item.role}
+                  </p>
                 </div>
-
-                <div className="timeline-content">
-                  <div className="flex flex-wrap items-start justify-between gap-2">
-                    <div>
-                      <p className="text-lg font-semibold text-foreground">{item.company}</p>
-                      <p className="inline-flex items-center gap-1 text-sm text-body">
-                        <BriefcaseBusiness className="h-3.5 w-3.5" />
-                        {item.role}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-muted-foreground">{item.period}</p>
-                      <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.location}</p>
-                    </div>
-                  </div>
-
-                  {item.award && (
-                    <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent">
-                      <Award className="h-3 w-3" />
-                      {item.award}
-                    </p>
-                  )}
-
-                  <ul className="mt-4 space-y-2">
-                    {item.highlights.map((highlight) => (
-                      <li key={highlight} className="flex gap-2.5 text-sm text-body">
-                        <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="text-right">
+                  <p className="text-sm font-medium text-muted-foreground">{item.period}</p>
+                  <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.location}</p>
                 </div>
-              </motion.article>
-            ))}
-          </div>
+              </div>
+
+              {item.award && (
+                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                  <Award className="h-3 w-3" />
+                  {item.award}
+                </p>
+              )}
+
+              {item.subProjects && (
+                <div className="mt-6 space-y-6">
+                  {item.subProjects.map((sub) => (
+                    <div key={sub.name}>
+                      <p className="mb-3 text-sm font-semibold text-foreground/90">{sub.name}</p>
+                      <ul className="space-y-2 border-l border-white/10 pl-4">
+                        {sub.highlights.map((h) => (
+                          <li key={h} className="text-sm leading-relaxed text-body">{h}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {item.highlights && (
+                <ul className="mt-5 space-y-2 border-l border-white/10 pl-4">
+                  {item.highlights.map((h) => (
+                    <li key={h} className="text-sm leading-relaxed text-body">{h}</li>
+                  ))}
+                </ul>
+              )}
+            </motion.article>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Experience;

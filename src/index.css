@@ -83,7 +83,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full bg-secondary/55 px-5 py-2.5 text-sm font-medium text-foreground transition duration-300 hover:bg-secondary;
+    @apply inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur-md transition duration-300 hover:bg-white/10;
   }
 
   .icon-btn {
@@ -91,7 +91,7 @@
   }
 
   .chip {
-    @apply rounded-full border border-border bg-card/80 px-3 py-1.5 text-xs font-medium text-muted-foreground;
+    @apply rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm;
   }
 
   .proof-badge {
@@ -107,7 +107,7 @@
   }
 
   .value-icon {
-    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary;
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-primary/15 text-primary backdrop-blur-sm;
   }
 
   .timeline-item {
@@ -204,6 +204,51 @@
     mask-image: radial-gradient(circle at center, black 25%, transparent 88%);
   }
 }
+
+/* ── Starfield ──────────────────────────────────────────────────────────── */
+.star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: transparent;
+  box-shadow: var(--s);
+  transform-origin: center;
+}
+.star::after { content: none; }
+
+/* Three layers staggered by 1/3 of the cycle — continuous forward stream */
+.star-s { width: 1px; height: 1px; animation: animStarForward 9s linear infinite; }
+.star-m { width: 2px; height: 2px; animation: animStarForward 9s linear infinite -3s; }
+.star-l { width: 3px; height: 3px; animation: animStarForward 9s linear infinite -6s; }
+
+@keyframes animStarForward {
+  from { transform: scale(0.08); opacity: 0; }
+  8%   { opacity: 0.85; }
+  82%  { opacity: 0.85; }
+  to   { transform: scale(5.5); opacity: 0; }
+}
+
+/* ── macOS Glassmorphism ────────────────────────────────────────────────── */
+
+/* Frosted glass on every bg-card surface */
+[class*="bg-card"] {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* Subtle inner top-highlight (macOS panel look) */
+[class*="rounded-2xl"][class*="border-border"] {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+}
+[class*="rounded-xl"][class*="border-border"] {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ── End glassmorphism ──────────────────────────────────────────────────── */
 
 @keyframes gradientShift {
   0% {

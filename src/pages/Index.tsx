@@ -1,3 +1,4 @@
+import StarField from "@/components/ui/StarField";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -13,12 +14,9 @@ const Index = () => {
   };
 
   return (
-    <div className="relative overflow-x-clip bg-background text-foreground">
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="hero-glow hero-glow-left" />
-        <div className="hero-glow hero-glow-center" />
-        <div className="hero-glow hero-glow-right" />
-      </div>
+    <div className="relative overflow-x-clip text-foreground">
+      {/* Starfield sits behind everything */}
+      <StarField />
 
       <Navbar />
       <Hero onViewWork={() => scrollToId("projects")} onContact={() => scrollToId("contact")} />
