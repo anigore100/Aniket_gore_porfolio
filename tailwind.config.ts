@@ -66,7 +66,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Space Grotesk", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Geist Sans", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

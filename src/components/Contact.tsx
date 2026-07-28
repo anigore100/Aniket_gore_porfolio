@@ -1,34 +1,22 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Phone, Send } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="pb-12 pt-10 sm:pb-14 sm:pt-12">
+    <section id="contact" className="pb-28 pt-4 sm:pb-32 sm:pt-6">
       <div className="section-padding">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ amount: 0.35, once: true }}
-          className="mx-auto w-full max-w-6xl p-2 text-center sm:p-4"
+          className="mx-auto w-full max-w-2xl text-center"
         >
-          <p className="eyebrow">Contact</p>
-          <h2 className="mt-3 mx-auto max-w-3xl text-3xl font-bold sm:text-4xl">Get in Touch</h2>
-          <p className="mt-4 mx-auto max-w-2xl text-sm text-body sm:text-base">
-            Open to backend engineering and full-stack opportunities where reliability, speed, and AI-assisted execution matter.
-          </p>
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Let&apos;s build together</h2>
 
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a href="mailto:aniketgore23230@gmail.com" className="btn-primary">
-              <Send className="mr-2 h-4 w-4" />
-              Contact Me
-            </a>
-            <a href="tel:+919588428818" className="btn-secondary">
-              <Phone className="mr-2 h-4 w-4" />
-              +91 9588428818
-            </a>
-            <a href="mailto:aniketgore23230@gmail.com" className="btn-secondary">
+            <a href="mailto:aniketgore2323@gmail.com" className="btn-primary">
               <Mail className="mr-2 h-4 w-4" />
-              aniketgore23230@gmail.com
+              aniketgore2323@gmail.com
             </a>
           </div>
 

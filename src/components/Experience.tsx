@@ -1,153 +1,205 @@
-import { motion } from "framer-motion";
-import { Award, BriefcaseBusiness, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import transergLogo from "@/assets/transergLogo.png";
+import agivantLogo from "@/assets/agivantLogo.png";
 
-type SubProject = { name: string; highlights: string[] };
+const FOCUS_ITEMS = [
+  "Mastering System Design",
+  "Solving DSA Daily",
+  "Building AI Agents & Full Stack Systems",
+  "Exploring AI Orchestration",
+];
 
 type ExperienceItem = {
   company: string;
-  role: string;
   period: string;
-  location: string;
-  award?: string;
-  current?: boolean;
-  subProjects?: SubProject[];
-  highlights?: string[];
+  logo: string;
+  highlights: string[];
 };
 
 const EXPERIENCE: ExperienceItem[] = [
   {
     company: "Transeg LLP",
-    role: "Software Engineer I",
     period: "Dec 2024 – Jun 2026",
-    location: "Remote",
-    award: "Stellar Engineer Award — Q4 2025",
-    current: true,
-    subProjects: [
-      {
-        name: "Petpooja Studio — AI Image Gallery",
-        highlights: [
-          "Led end-to-end delivery of an AI-powered image gallery platform serving 400K+ assets to 10,000 daily active users, managing architecture, team coordination, and deployment.",
-          "Reduced API latency from 4,000ms → 100ms through database indexing, query optimization, parallel execution, and CloudFront CDN caching.",
-          "Integrated AI APIs (Background Removal, Nano Banana, Veo-3) to generate personalized image and video content via user-driven image fusion pipelines.",
-          "Architected AWS infrastructure: S3 with versioning, SQS for async image/video job processing, SES for transactional email, CloudFront for content delivery, EC2 for backend services.",
-          "Built image resizing pipeline for 12+ aggregator integrations including Zomato, Swiggy, and international platforms; integrated Studio APIs directly into Petpooja POS.",
-          "Collaborated across AI/data science, VAPT, QA, legal, and aggregator teams to deliver requirement-aligned, security-audited releases.",
-        ],
-      },
-      {
-        name: "FlowBit AI — Document Intelligence SaaS",
-        highlights: [
-          "Built backend APIs with Node.js and Next.js for an AI-powered procurement platform using Azure OpenAI (GPT-4) to generate natural-language procurement recommendations with document highlighting.",
-          "Engineered a multi-tenant RBAC authorization layer providing organization-, department-, and user-level resource access control across the platform.",
-          "Implemented end-to-end file storage system on AWS S3; integrated AWS SQS for async document processing queues.",
-          "Built collaborative features: nested comments, approval/rejection workflows, invite/onboarding flows, and assign/revoke permission management.",
-          "Owned technical requirement gathering and implemented GDPR compliance measures across the platform.",
-        ],
-      },
-      {
-        name: "SuperSalesMind — AI Sales Automation Platform",
-        highlights: [
-          "Founding engineer of an AI-driven lead intelligence and outreach automation platform integrating RocketReach, Crustdata, Lusha, and People Data Labs for contact enrichment.",
-          "Integrated Unipile APIs to connect Gmail and LinkedIn for automated multi-step outreach sequences with autonomous reply handling based on company data.",
-          "Built autopilot lead discovery engine with configurable filters, cron-scheduled campaigns, and calendar-based meeting booking — reducing manual outreach effort by 40%.",
-          "Delivered end-to-end: advanced analytics dashboard, CRM workflows, lead tracking from outreach to onboarding, and CI/CD pipeline on AWS.",
-        ],
-      },
+    logo: transergLogo,
+    highlights: [
+      "Built and scaled Petpooja Studio for Petpooja POS, an AI-powered stock image platform serving 10K+ daily active users and managing 400K+ media assets.",
+      "Founding AI Engineer, owning end-to-end product architecture and delivery from concept to production.",
+      "Improved API performance by 97% (4000ms → 100ms).",
+      "Shipped 20+ AI/LLM features and 100+ production APIs across multiple AI-powered SaaS products.",
+      "Architected an end-to-end RAG pipeline for a sales automation platform, automating 80% of lead inquiries across Gmail and LinkedIn.",
+      "Developed AI-powered collaborative features for a Germany-based Document Intelligence platform.",
     ],
   },
   {
     company: "Agivant Technologies",
-    role: "Full Stack Software Engineer",
     period: "May 2024 – Nov 2024",
-    location: "Pune",
+    logo: agivantLogo,
     highlights: [
-      "Engineered a conversational AI platform on Google Cloud Platform — ingested and cleaned raw data into BigQuery, built a full RAG pipeline using Vertex AI, text-embedding-gecko embeddings, and Gemini LLM to power a Text-to-SQL query engine.",
-      "Designed the data pipeline: raw data ingestion → BigQuery → vector embedding with re-rankers → natural language to SQL conversion → interactive visualizations (Seaborn, Matplotlib) for non-technical business users.",
-      "Containerized services with Docker and managed source control via GitHub; integrated vector database for semantic retrieval with re-ranking for result quality.",
-      "Delivered client-driven features for a production e-commerce platform; participated in sprint planning, code reviews, and cross-functional Agile delivery.",
+      "Built an end-to-end Conversational BI Agent that converts natural language into SQL queries and interactive data visualizations.",
+      "Billable Full-Stack Cloud Developer for an international e-commerce client, delivering production-grade cloud applications.",
     ],
   },
 ];
 
-const Experience = () => (
-  <section id="experience" className="py-12 sm:py-14">
-    <div className="section-padding">
-      <div className="mx-auto w-full max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.3, once: true }}
-          className="mb-12"
-        >
-          <p className="eyebrow">Experience</p>
-          <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Work History</h2>
-        </motion.div>
+const HIGHLIGHT_KEYWORDS = [
+  "Petpooja Studio",
+  "Petpooja POS",
+  "10K+",
+  "400K+",
+  "97% (4000ms → 100ms)",
+  "20+",
+  "100+",
+  "80%",
+  "RAG pipeline",
+  "Conversational BI Agent",
+  "Billable",
+  "international e-commerce",
+  "AI-powered",
+  "Founding AI Engineer",
+];
 
-        <div className="relative space-y-12 before:absolute before:bottom-0 before:left-[5px] before:top-2 before:w-px before:bg-gradient-to-b before:from-primary/60 before:to-primary/05">
-          {EXPERIENCE.map((item, index) => (
-            <motion.article
-              key={item.company}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ amount: 0.1, once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="pl-10"
+const HIGHLIGHT_PATTERN = new RegExp(
+  `(${HIGHLIGHT_KEYWORDS.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+  "g"
+);
+
+const renderHighlight = (text: string) =>
+  text.split(HIGHLIGHT_PATTERN).map((part, i) =>
+    HIGHLIGHT_KEYWORDS.includes(part) ? (
+      <span key={i} className="gradient-text font-semibold">
+        {part}
+      </span>
+    ) : (
+      <span key={i}>{part}</span>
+    )
+  );
+
+const Experience = () => {
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [focusIndex, setFocusIndex] = useState(0);
+
+  const toggle = (company: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(company)) next.delete(company);
+      else next.add(company);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setFocusIndex((prev) => (prev + 1) % FOCUS_ITEMS.length);
+    }, 2600);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    <section id="experience" className="py-4 sm:py-6">
+      <div className="section-padding">
+        <div className="mx-auto w-full max-w-2xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.3, once: true }}
+            className="text-2xl font-bold text-foreground sm:text-3xl"
+          >
+            Work Experience
+          </motion.h2>
+
+          <div className="mt-6 space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.3, once: true }}
+              transition={{ duration: 0.4 }}
             >
-              <div className="absolute left-0 top-1.5">
-                {item.current
-                  ? <Sparkles className="h-3 w-3 text-primary" />
-                  : <span className="block h-2 w-2 rounded-full bg-primary/50 mt-0.5" />}
-              </div>
-
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div>
-                  <p className="text-xl font-bold text-foreground">{item.company}</p>
-                  <p className="mt-0.5 inline-flex items-center gap-1.5 text-sm text-body">
-                    <BriefcaseBusiness className="h-3.5 w-3.5" />
-                    {item.role}
+              <div className="flex items-center gap-3">
+                <span className="glass-icon inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                </span>
+                <div className="flex min-w-0 flex-1 flex-wrap items-center justify-between gap-2">
+                  <p className="text-base font-semibold text-foreground">Currently Upskilling</p>
+                  <p className="chip text-muted-foreground">
+                    Open to Backend • Full-Stack • AI Engineer Opportunities
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-muted-foreground">{item.period}</p>
-                  <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.location}</p>
-                </div>
               </div>
 
-              {item.award && (
-                <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                  <Award className="h-3 w-3" />
-                  {item.award}
-                </p>
-              )}
-
-              {item.subProjects && (
-                <div className="mt-6 space-y-6">
-                  {item.subProjects.map((sub) => (
-                    <div key={sub.name}>
-                      <p className="mb-3 text-sm font-semibold text-foreground/90">{sub.name}</p>
-                      <ul className="space-y-2 border-l border-white/10 pl-4">
-                        {sub.highlights.map((h) => (
-                          <li key={h} className="text-sm leading-relaxed text-body">{h}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+              <div className="pl-12">
+                <div className="mt-1">
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={FOCUS_ITEMS[focusIndex]}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      className="text-sm text-muted-foreground"
+                    >
+                      {FOCUS_ITEMS[focusIndex]}
+                    </motion.p>
+                  </AnimatePresence>
                 </div>
-              )}
+              </div>
+            </motion.div>
 
-              {item.highlights && (
-                <ul className="mt-5 space-y-2 border-l border-white/10 pl-4">
-                  {item.highlights.map((h) => (
-                    <li key={h} className="text-sm leading-relaxed text-body">{h}</li>
-                  ))}
-                </ul>
-              )}
-            </motion.article>
-          ))}
+            {EXPERIENCE.map((item, index) => {
+              const isOpen = expanded.has(item.company);
+              return (
+                <motion.div
+                  key={item.company}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.3, once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="glass-icon inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
+                      <img src={item.logo} alt={`${item.company} logo`} className="h-full w-full object-cover" />
+                    </span>
+                    <div className="flex min-w-0 flex-1 flex-wrap items-center justify-between gap-2">
+                      <p className="text-base font-semibold text-foreground">{item.company}</p>
+                      <p className="text-sm text-muted-foreground">{item.period}</p>
+                    </div>
+                  </div>
+
+                  {item.highlights.length > 0 && (
+                    <div className="pl-12">
+                      <button
+                        type="button"
+                        onClick={() => toggle(item.company)}
+                        className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+                      >
+                        {isOpen ? "Hide details" : "Show details"}
+                        <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
+                      </button>
+
+                      {isOpen && (
+                        <ul className="mt-3 list-disc space-y-3 pl-5 marker:text-muted-foreground">
+                          {item.highlights.map((h) => (
+                            <li key={h} className="text-sm leading-relaxed text-body">
+                              {renderHighlight(h)}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Experience;

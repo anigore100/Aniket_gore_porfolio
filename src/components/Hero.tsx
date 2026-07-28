@@ -1,34 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Github, Linkedin, Sparkles } from "lucide-react";
-import profileImage from "@/assets/avatar.avif";
-
-// ── Update these with your actual usernames ──────────────────────────────────
-const LEETCODE_USERNAME = "goreaniket_1";
-// ─────────────────────────────────────────────────────────────────────────────
-
-type HeroProps = {
-  onViewWork?: () => void;
-  onContact?: () => void;
-};
+import profileImage from "@/assets/DP.jpeg";
 
 const ROTATING_ROLES = [
   "Backend and RAG Engineer",
-  "AI Automation Engineer",
+  "Founding Product Engineer",
   "Full Stack Software Engineer",
 ];
 
-const STATIC_STATS = [
-  { value: "~2 yrs", label: "Experience" },
-  { value: "400K+", label: "Images scaled" },
-  { value: "4s → 300ms", label: "API optimized" },
-  { value: "80%", label: "Tasks automated" },
-];
-
-const Hero = ({ onViewWork, onContact }: HeroProps) => {
+const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [leetcodeCount, setLeetcodeCount] = useState<string>("...");
-  const gfgCount = "392";
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -37,90 +18,35 @@ const Hero = ({ onViewWork, onContact }: HeroProps) => {
     return () => window.clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    fetch(`https://alfa-leetcode-api.onrender.com/${LEETCODE_USERNAME}/solved`)
-      .then((r) => r.json())
-      .then((data) => setLeetcodeCount(data.solvedProblem ?? data.totalSolved ?? "—"))
-      .catch(() => setLeetcodeCount("—"));
-  }, []);
-
-
-  const allStats = [
-    ...STATIC_STATS,
-    { value: String(leetcodeCount), label: "LeetCode solved" },
-    { value: String(gfgCount), label: "GFG solved" },
-  ];
-
   return (
-    <section id="home" className="relative flex min-h-[calc(100vh-64px)] items-center py-16 sm:py-20">
-      <div className="section-padding w-full">
-        <div className="mx-auto grid w-full max-w-6xl items-start gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-          >
-            <p className="inline-flex items-center gap-2 rounded-full bg-secondary/35 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-accent">
-              <Sparkles className="h-3.5 w-3.5" />
-              Building high-performance backend and AI systems
-            </p>
-
-            <h1 className="mt-5 max-w-5xl text-balance text-4xl font-extrabold leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Hey, I&apos;m <span className="gradient-text">Aniket Gore</span>
-              <br />
-              A Software Engineer
-            </h1>
-
-            <div className="mt-4 text-lg font-semibold text-muted-foreground sm:text-xl">
-              <span className="text-foreground">Now: </span>
-              <span className="gradient-text">{ROTATING_ROLES[roleIndex]}</span>
-              <span className="typing-cursor" aria-hidden="true" />
+    <section id="home" className="pt-16 pb-4 sm:pt-20 sm:pb-6">
+      <div className="section-padding">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          className="mx-auto w-full max-w-2xl"
+        >
+          <div className="flex items-start justify-between gap-6">
+            <div>
+              <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl">
+                Hi, I&apos;m <span className="gradient-text">Aniket</span>
+              </h1>
+              <p className="mt-2 text-base text-muted-foreground sm:text-lg">
+                {ROTATING_ROLES[roleIndex]}
+                <span className="typing-cursor" aria-hidden="true" />
+              </p>
             </div>
-
-            <p className="mt-5 max-w-4xl text-base leading-relaxed text-body sm:text-lg">
-              Backend and RAG engineer with ~2 years of experience building robust architectures, AI-driven automation platforms, and high-throughput APIs with Node.js, Express.js, MongoDB, and AWS.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button type="button" onClick={onContact} className="btn-primary">
-                Contact Me
-                <ExternalLink className="ml-1.5 h-4 w-4" />
-              </button>
-              <button type="button" onClick={onViewWork} className="btn-secondary">
-                View Projects
-                <ArrowRight className="ml-1.5 h-4 w-4" />
-              </button>
-              <a href="https://github.com/aniketgore100" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="GitHub">
-                <Github className="h-4 w-4" />
-              </a>
-              <a href="https://www.linkedin.com/in/aniket-gore-3681b4203/" target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label="LinkedIn">
-                <Linkedin className="h-4 w-4" />
-              </a>
+            <div className="glass-icon h-16 w-16 shrink-0 rounded-full sm:h-20 sm:w-20">
+              <img
+                src={profileImage}
+                alt="Aniket Gore"
+                className="h-full w-full object-cover"
+                style={{ transform: "scale(2.6)", transformOrigin: "45% 32%" }}
+              />
             </div>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {allStats.map((stat) => (
-                <div key={stat.label} className="rounded-xl border border-border/60 bg-card/50 px-4 py-2 text-center">
-                  <p className="text-sm font-bold text-foreground">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="hidden justify-self-center lg:block"
-          >
-            <img
-              src={profileImage}
-              alt="Aniket Gore"
-              className="h-44 w-44 rounded-full border border-border/60 object-cover shadow-[0_20px_60px_-30px_rgba(114,112,255,0.8)] xl:h-52 xl:w-52"
-            />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
