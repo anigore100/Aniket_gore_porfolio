@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { ChevronDown, ExternalLink, Github, Video } from "lucide-react";
 import { cn } from "@/lib/utils";
 import projectThumbnail from "@/assets/projectThumbnail.png";
+import devSentinelThumbnail from "@/assets/DevSentinel.png";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 type Project = {
   title: string;
@@ -16,6 +18,24 @@ type Project = {
 };
 
 const PROJECTS: Project[] = [
+  {
+    title: "DevSentinel",
+    description: "A multi-agent pull request review engine that automatically reviews GitHub PRs and posts LLM-generated feedback the moment they're opened or updated.",
+    details: [
+      "Built a two-stage pipeline that decouples noticing a PR from reviewing it, so the reviewing step — which takes real time to reason through a change — never risks delaying or breaking the notification response.",
+      "Ingestion gateway (Node.js/TypeScript) receives GitHub pull_request webhooks, verifies the HMAC signature before touching the payload, filters out drafts and irrelevant actions, and deduplicates by repo:pr_number:head_sha so retried deliveries never produce duplicate jobs.",
+      "Enforces a per-repository hourly rate limit so one very active or misbehaving repository can't exhaust the system's review capacity for everyone else.",
+      "Enqueues each review as a job onto a shared Redis (Upstash) queue and acknowledges the webhook immediately, without waiting on the review to finish.",
+      "Exposes a /health endpoint reporting queue depth, Redis reachability, and uptime, plus a dry-run mode when Redis credentials aren't configured.",
+      "Reviewing worker (Python) polls the queue, fetches the real unified diff for the PR, and sends it to an LLM with a reviewer-style prompt to generate findings.",
+      "Before posting, checks the PR's current head SHA against the job's — if the PR moved on while the job was queued, the stale review is skipped instead of posted.",
+      "Isolates failures at each stage (fetch, review, post) and re-queues failed jobs up to a retry limit so a bad job never silently drops or takes down the worker.",
+    ],
+    stack: ["Node.js", "TypeScript", "Express", "Python", "Redis", "Upstash", "GitHub Webhooks", "OpenAI GPT-4o-mini"],
+    highlight: ["OpenAI GPT-4o-mini", "Redis"],
+    githubUrl: "https://github.com/aniketgore100/DevSentinel_Agent",
+    previewImage: devSentinelThumbnail,
+  },
   {
     title: "Document Intelligence",
     description: "Upload, manage, and chat with documents through a RAG pipeline with live source highlighting on the PDF viewer.",
@@ -62,17 +82,18 @@ const Projects = () => {
             Projects
           </motion.h2>
 
-          <div className="mt-6 space-y-4">
-            {PROJECTS.map((project, index) => {
+          <Carousel opts={{ align: "start" }} className="mt-6">
+            <CarouselContent>
+              {PROJECTS.map((project, index) => {
               const isOpen = expanded.has(project.title);
               return (
+                <CarouselItem key={project.title} className="basis-full sm:basis-1/2">
                 <motion.article
-                  key={project.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ amount: 0.1, once: true }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
-                  className="overflow-hidden rounded-2xl border border-border bg-secondary/60"
+                  className="h-full overflow-hidden rounded-2xl border border-border bg-secondary/60"
                 >
                   {project.previewImage && (
                     <div className="relative">
@@ -152,9 +173,15 @@ const Projects = () => {
                     </div>
                   </div>
                 </motion.article>
+                </CarouselItem>
               );
-            })}
-          </div>
+              })}
+            </CarouselContent>
+            <div className="mt-4 flex justify-end gap-2">
+              <CarouselPrevious className="static h-8 w-8 translate-x-0 translate-y-0" />
+              <CarouselNext className="static h-8 w-8 translate-x-0 translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>

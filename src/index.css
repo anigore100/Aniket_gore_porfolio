@@ -202,6 +202,24 @@
     @apply bg-white/[0.15];
   }
 
+  .dock-panel {
+    @apply relative overflow-hidden border border-white/70 backdrop-blur-2xl transition duration-300;
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.65), hsl(0 0% 100% / 0.4));
+    box-shadow:
+      inset 0 1px 1px hsl(0 0% 100% / 0.9),
+      inset 0 -8px 16px -8px hsl(0 0% 0% / 0.15),
+      0 20px 40px -20px hsl(0 0% 0% / 0.3);
+  }
+
+  .dark .dock-panel {
+    @apply border-white/15;
+    background: linear-gradient(180deg, hsl(222 30% 22% / 0.6), hsl(222 30% 12% / 0.6));
+    box-shadow:
+      inset 0 1px 1px hsl(0 0% 100% / 0.12),
+      inset 0 -8px 16px -8px hsl(0 0% 0% / 0.5),
+      0 20px 40px -20px hsl(0 0% 0% / 0.6);
+  }
+
   .dock-beam-mask {
     @apply pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit];
     padding: 2px;

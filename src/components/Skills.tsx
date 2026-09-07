@@ -24,7 +24,7 @@ const SKILLS = [
   "PM2",
   "CI/CD",
   "Ubuntu",
-  "LangChain",
+  "LangGraph",
   "RAG Pipelines",
   "OpenAI",
   "Azure OpenAI",

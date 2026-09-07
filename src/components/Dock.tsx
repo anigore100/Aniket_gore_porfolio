@@ -109,7 +109,7 @@ const Dock = () => {
         <div
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="glass-icon relative z-10 flex items-center gap-2 rounded-full px-3 py-1.5 shadow-[0_10px_30px_-14px_rgba(30,25,15,0.35)]"
+          className="dock-panel relative z-10 flex items-center gap-2 rounded-full px-3 py-1.5"
         >
           {DOCK_ITEMS.map((item) => (
             <DockIcon key={item.label} mouseX={mouseX} icon={item.icon} label={item.label} href={item.href} external={item.external} />
