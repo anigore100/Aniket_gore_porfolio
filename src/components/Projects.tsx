@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
       "Before posting, checks the PR's current head SHA against the job's — if the PR moved on while the job was queued, the stale review is skipped instead of posted.",
       "Isolates failures at each stage (fetch, review, post) and re-queues failed jobs up to a retry limit so a bad job never silently drops or takes down the worker.",
     ],
-    stack: ["Node.js", "TypeScript", "Express", "Python", "Redis", "Upstash", "GitHub Webhooks", "OpenAI GPT-4o-mini"],
+    stack: ["Node.js", "JavaScript", "Express", "Python", "Redis", "Upstash", "GitHub Webhooks", "OpenAI GPT-4o-mini"],
     highlight: ["OpenAI GPT-4o-mini", "Redis"],
     githubUrl: "https://github.com/aniketgore100/DevSentinel_Agent",
     previewImage: devSentinelThumbnail,

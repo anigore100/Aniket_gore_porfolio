@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const SKILLS = [
   "JavaScript",
-  "TypeScript",
+  "JavaScript",
   "Python",
   "Java",
   "C++",

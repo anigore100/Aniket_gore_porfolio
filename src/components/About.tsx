@@ -13,10 +13,18 @@ const About = () => {
         >
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">About</h2>
           <p className="mt-4 text-base leading-relaxed text-body">
-            I&apos;m a Full Stack Developer building products at the intersection of AI and the web. I&apos;ve been working
-            as a Full Stack Developer since 2024, architecting backend systems, APIs, and automation-first platforms. I also
-            have hands-on experience in AI Engineering, specifically building RAG-based full-stack applications that pair
-            retrieval pipelines with production-grade web apps. I care about shipping fast and building things that matter.
+            I work across engineering, product, and AI — translating business requirements and product vision into
+            practical technical solutions, and turning ideas into reliable, production-ready features. I build
+            full-stack applications with React, Node.js, JavaScript, and Python, along with RAG systems, CMS
+            platforms, AI workflows, and LLM-powered applications, often taking a feature from concept to production
+            within the same day.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-body">
+            My current focus is going deeper into AI engineering — LLM application reliability, guardrails,
+            evaluations, RAG, agentic workflows, and MCP — building systems that are not only capable, but predictable
+            and useful in production. I also look for opportunities where AI can create meaningful leverage within
+            products and businesses, whether through automation, intelligent workflows, better information retrieval,
+            or entirely new product capabilities.
           </p>
         </motion.div>
       </div>
